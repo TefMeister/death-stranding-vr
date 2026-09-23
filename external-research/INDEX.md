@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-09-17 (estate sweep) — CHECK-IN.** First pass: folder bootstrapped; one topic on prior art (Luke Ross's RealVR supports the Director's Cut) and the Decima and camera tools.
+**Last `/gr` pass: 2026-09-23 (estate sweep) — CHECK-IN.** Checked phunkaeg's *VR Modding Playbook*: only Luke Ross's R.E.A.L. (which covers Horizon Zero Dawn, also Decima), already tracked; nothing new.
+
+_Previous: **Last `/gr` pass: 2026-09-17 (estate sweep) — CHECK-IN.** First pass: folder bootstrapped; one topic on prior art (Luke Ross's RealVR supports the Director's Cut) and the Decima and camera tools._
 
 Every research topic gathered for this project, newest first. Each row links to a self-contained
 write-up in `topics/`. Status tags:
