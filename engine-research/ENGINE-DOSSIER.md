@@ -23,7 +23,7 @@
 - **(2026-10-01) Graphics libraries are loaded at run time:** the import table has no `d3d12.dll` or `dxgi.dll` (both appear only as strings), so a proxy named either, beside the exe, is the likely foothold `[inferred-static 2026-10-01]`. `D3DReflect` IS imported from `d3dcompiler_47.dll`: the game reads shader reflection itself, at run time. `.text` entropy 6.36, entry point in `.text`: the code is NOT encrypted on disk, so static disassembly works `[measured 2026-10-01]`. ASLR on.
 - Developer console / cvar system present? how opened?: no console string beyond the Win32 console API (`AllocConsole`, `EnableConsoleLogging`) `[inferred-static 2026-10-01]`. Command-line switches found as plain strings: `-enable_dred` (D3D12 crash breadcrumbs), `-safe`, `-job_thread_affinity`, `-job_thread_adjust_smt`, `-disable_initial_highlight`, `-unlock_all_perks`, `-unlock_hack_perks` `[inferred-static 2026-10-01]`; what each does is untested.
 - **A built-in free camera: PHOTO MODE** (`DSPhotoMode`, `DSPhotoModeCameraCollisionComponent`, menu data sources) `[inferred-static 2026-10-01]` — the cheapest route to a free camera for camera RE.
-- **⭐ A stereoscopic 3D SETTING exists**: `SetStereoscopic` / `GetStereoscopic`, `Set3DScreenFactor`, `SetStereoscopicDepthMultiplier`, **`SetStereoscopicFPDepthMultiplier`** (a separate first-person depth), listed among the user-settings functions beside gamma, volumes and photo mode; also a `StereoDepth` property on camera entities `[inferred-static 2026-10-01]`. Probably the PlayStation 3D-TV option carried into the PC build; whether the PC renderer still draws two eyes from it is NOT known `[hypothesis]`.
+- **⭐ A stereoscopic 3D SETTING exists**: `SetStereoscopic` / `GetStereoscopic`, `Set3DScreenFactor`, `SetStereoscopicDepthMultiplier`, **`SetStereoscopicFPDepthMultiplier`** (a separate first-person depth), listed among the user-settings functions beside gamma, volumes and photo mode; also a `StereoDepth` property on camera entities `[inferred-static 2026-10-01]`. Probably the PlayStation 3D-TV option. **❌ STUBBED ON PC** `[inferred-static 2026-10-01]`: in the script-binding table (entries {name, signature, function, flags} at `0x144e3a2e8`…`0x144e3a3a8`) every stereo setter's wrapper ends in a jump to `0x1418e9b10`, which is a bare `ret`, and `GetStereoscopic` calls `0x141920dc0`, which is `xor al,al; ret` (always off). So no two-eye path is reachable through this setting; see §11.
 
 ## 4. DRM / anti-debug & injection foothold
 - DRM (CEG/Denuvo/GOG/none); launch-time-debugger behaviour: No Denuvo string and no protection-shaped section found; Steam API present `[inferred-static 2026-09-13]`; `steam_api64.dll` is not a static import (loaded at run time); `.text` is plain code (entropy 6.36) `[measured 2026-10-01]`. Not tested live.
@@ -68,6 +68,7 @@
 - Frame-capture method; where images land:
 
 ## 11. Dead ends & false leads (save future time)
+- **The stereoscopic 3D setting** (`SetStereoscopic`, `Set3DScreenFactor`, the depth multipliers): stubbed in the PC build — setters do nothing, the getter always says off `[inferred-static 2026-10-01]`. Not a route to two eyes.
 - none yet.
 
 ## 12. Open risks toward the North Star
