@@ -14,16 +14,20 @@
 
 ## 2. Engine lineage
 - Family / base engine and how it was modified: Decima, Guerrilla Games' engine `[reported]`. Havok and Scaleform strings are present in the exe `[inferred-static 2026-09-13]`.
-- Middleware (animation, audio, physics, megatexture, CUDA, etc.):
+- Middleware (animation, audio, physics, megatexture, CUDA, etc.): Havok (physics), **Wwise** (audio; `AK::SoundEngine`, including `MuteBackgroundMusic`), Scaleform-era UI names, Oodle, Bink 2; upscalers **DLSS** (`nvngx_dlss.dll`), **XeSS** (`libxess.dll`, `igxess.dll`, `XeFX*.dll`) and **FSR 2** (`AMD_FSR_2_0`, built in) `[inferred-static 2026-10-01]`.
 - Distinctive file formats / build tags / symbol naming: Oodle compression (`oo2core_7_win64.dll`), Bink 2 video, and the DLSS and XeSS upscalers ship beside the exe. Data archives under `data\`, not yet looked at.
 
 ## 3. Binary & memory
 - 32/64-bit, size, module base, ASLR behaviour (stable base? relocations?): **64-bit** (PE32+), `ds.exe` 86.5 MB, linked 2024-01-28. Sections look ordinary (`.text` 62 MB), with no sign of a large protection blob `[inferred-static 2026-09-13]`.
 - Renderer API (D3D11/12, DXGI, GL, Vulkan) with evidence: Direct3D 12: `d3d12.dll` and `dxgi.dll` appear in the exe's strings, and `dxcompiler.dll`/`dxil.dll` ship beside it `[inferred-static 2026-09-13]`.
-- Developer console / cvar system present? how opened?: not yet investigated.
+- **(2026-10-01) Graphics libraries are loaded at run time:** the import table has no `d3d12.dll` or `dxgi.dll` (both appear only as strings), so a proxy named either, beside the exe, is the likely foothold `[inferred-static 2026-10-01]`. `D3DReflect` IS imported from `d3dcompiler_47.dll`: the game reads shader reflection itself, at run time. `.text` entropy 6.36, entry point in `.text`: the code is NOT encrypted on disk, so static disassembly works `[measured 2026-10-01]`. ASLR on.
+- Developer console / cvar system present? how opened?: no console string beyond the Win32 console API (`AllocConsole`, `EnableConsoleLogging`) `[inferred-static 2026-10-01]`. Command-line switches found as plain strings: `-enable_dred` (D3D12 crash breadcrumbs), `-safe`, `-job_thread_affinity`, `-job_thread_adjust_smt`, `-disable_initial_highlight`, `-unlock_all_perks`, `-unlock_hack_perks` `[inferred-static 2026-10-01]`; what each does is untested.
+- **A built-in free camera: PHOTO MODE** (`DSPhotoMode`, `DSPhotoModeCameraCollisionComponent`, menu data sources) `[inferred-static 2026-10-01]` — the cheapest route to a free camera for camera RE.
+- **⭐ A stereoscopic 3D SETTING exists**: `SetStereoscopic` / `GetStereoscopic`, `Set3DScreenFactor`, `SetStereoscopicDepthMultiplier`, **`SetStereoscopicFPDepthMultiplier`** (a separate first-person depth), listed among the user-settings functions beside gamma, volumes and photo mode; also a `StereoDepth` property on camera entities `[inferred-static 2026-10-01]`. Probably the PlayStation 3D-TV option carried into the PC build; whether the PC renderer still draws two eyes from it is NOT known `[hypothesis]`.
 
 ## 4. DRM / anti-debug & injection foothold
-- DRM (CEG/Denuvo/GOG/none); launch-time-debugger behaviour: No Denuvo string and no protection-shaped section found; Steam API present `[inferred-static 2026-09-13]`. Not tested live.
+- DRM (CEG/Denuvo/GOG/none); launch-time-debugger behaviour: No Denuvo string and no protection-shaped section found; Steam API present `[inferred-static 2026-09-13]`; `steam_api64.dll` is not a static import (loaded at run time); `.text` is plain code (entropy 6.36) `[measured 2026-10-01]`. Not tested live.
+- **Settings and saves:** `%LOCALAPPDATA%\KojimaProductions\DeathStrandingDC\<steam id>\profile` (binary) plus save slots; no ini found, so window mode and music are set in the in-game menu `[inferred-static 2026-10-01]`.
 - Attach workflow that works: not yet tested.
 - Injection vector that works (proxy DLL name / injector / framework): not yet tested.
 
