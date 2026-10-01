@@ -56,3 +56,14 @@ offset, or a whole struct copied), which a fixed-offset search cannot see `[hypo
   stand-in for the compiler library could report, live, which register slot `ViewConstants` binds to
   `[hypothesis]` (⚠️ if the shaders are DXIL, the reflection goes through `dxcompiler.dll`, not `D3DReflect`);
 - or, after the first launch, read the camera block live from our `dxgi.dll`/`d3d12.dll` proxy.
+
+## Later still: the reflection logger is built (not installed)
+
+`staging/death-stranding-vr/proxy-d3dcompiler/`: a 64-bit `d3dcompiler_47.dll` that forwards all 29 exports of the
+game's own copy (renamed `d3dcompiler_47_real.dll`) and wraps `D3DReflect`, logging to `dsvr_reflect_log.txt` each
+constant buffer's name, size and register slot, and every `ViewConstants` member with its offset. No-game test
+(`test/reflect_selftest.c`): a shader with a `ViewConstants` buffer compiled through the forwarder and reflected
+through the wrapper logs `register b3` and all four members with the right offsets; a DXIL-style blob fails with the
+real error and is logged. **8 of 8 checks pass** `[verified-numerically 2026-10-01, n=8]`.
+
+Not installed: the game has not had its first plain launch yet, and installing means renaming one of its files.
