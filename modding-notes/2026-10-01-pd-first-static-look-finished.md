@@ -12,8 +12,9 @@
 - **Photo mode is a built-in free camera**, the cheapest way to move the camera for camera work.
 - **A stereoscopic 3D setting is still in the PC build**: `Set/GetStereoscopic`, `Set3DScreenFactor`, and depth
   multipliers for the normal and the first-person view, among the user-settings functions. Probably the
-  PlayStation 3D-TV option. Whether the PC renderer still draws two eyes from it is the most valuable unknown on this
-  project `[hypothesis]`: it is answerable statically now, by following the code that reads it.
+  PlayStation 3D-TV option. **Followed the same session: it is a stub on PC.** In the script-binding table every
+  stereo setter ends in a jump to a bare `ret` (`0x1418e9b10`), and the getter's function is `xor al,al; ret`
+  (always off). A dead end, now shown rather than guessed.
 - Upscalers: DLSS, XeSS and FSR 2, the last built in. Audio is Wwise.
 - A handful of command-line switches (`-enable_dred`, `-safe`, `-unlock_all_perks`, …); no developer console found.
 - Settings live in a binary `profile` under `%LOCALAPPDATA%\KojimaProductions\DeathStrandingDC\<id>\`, so the window
