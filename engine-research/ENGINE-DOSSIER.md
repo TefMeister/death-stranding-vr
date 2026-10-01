@@ -38,9 +38,26 @@
 
 ## 6. Camera & projection delivery (the crucial section)
 - How the world transform reaches the GPU (shared VP buffer / per-draw MVP /
-  other), with **shader-reflection / disassembly evidence**:
+  other), with **shader-reflection / disassembly evidence**: **a shared per-view constant structure,
+  `ViewConstants`**, one of Decima's described shader resource tables (`SRT_RTTI_ViewConstants`; siblings
+  `GlobalConstants`, `OffscreenParams`, `LightConstants`, `MaterialConstants`, …). Its members are registered at
+  start-up by `0x141823d60`, one call per member (name, byte offset, type code), so the layout is readable from the
+  exe with no game running `[inferred-static 2026-10-01]`. Identified as `ViewConstants` by two orderings that
+  agree: the code registers `OffscreenParams` (`0x141823cf0`) then this table, and the type-name strings sit in the
+  same order in `.rdata`.
 - Exact constant-buffer slot, parameter name(s), byte offset(s), layout,
-  handedness, row/column convention:
+  handedness, row/column convention: **`ViewConstants` layout** `[inferred-static 2026-10-01]` (type codes read
+  from the offset steps: `0x1b` float4x4, `0x1a` float3x4, `0x08` float4, `0x13` float3, `0x05` float, `0x15` uint):
+  `View` +0x000 · `Proj` +0x040 · `ViewProj` +0x080 · `InvView` +0x0C0 · `OldViewProj` +0x100 ·
+  `DepthReconstructMatrix` +0x140 · `HalfRes…` +0x180 · `QuarterRes…` +0x1C0 · **`ViewToObserverView` +0x200
+  (3×4)** · `Viewport` +0x230 · `WPOSScaleOffset` +0x240 · `MVScaleBias` +0x250 · `PixelSize` +0x260 · **`ViewPos`
+  +0x270** · `HPOSReconstructScaleOffset` +0x280 · **`FloatingOrigin` +0x290** (camera-relative world) ·
+  **`DepthDirection` +0x29C** (reverse-Z sign) · force-field probes +0x2A0…0x320 · `LodDistanceMul` +0x330 · … up to
+  `UseKJPVolumetricFog` +0x33C. Full table: `dev-archive/recon/2026-10-01-view-constants-layout/view-constants.txt`.
+  Slot number, row/column order and handedness are NOT known yet (need the filling code or a capture).
+  ⚠️ For a per-eye edit, `View`, `ViewProj`, `InvView`, the depth-reconstruct matrices and `ViewPos` must move
+  together; `ViewToObserverView` (a transform from the rendered view to a separate "observer" view) is a candidate
+  head-pose slot, like Prototype's View+0x2c `[hypothesis]`.
 - Where projection `P` / FOV comes from:
 - The per-eye override maths (`K_eye = …`):
 
