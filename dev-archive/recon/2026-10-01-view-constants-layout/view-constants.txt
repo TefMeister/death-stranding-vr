@@ -1,0 +1,33 @@
+# ViewConstants member table, decoded from ds.exe's start-up registration code at 0x141823d60 (2026-10-01, /pd).
+# Columns: byte offset, Decima type code, member name, descriptor slot. Interface metadata only.
+# Type codes inferred from the offset steps: 0x1b = float4x4 (64 B), 0x1a = float3x4 (48 B), 0x08 = float4, 0x13 = float3, 0x05 = float, 0x15 = uint.
++0x0000  type 0x1b  View                                     slot 0x146cf7ae0
++0x0040  type 0x1b  Proj                                     slot 0x146cf7b00
++0x0080  type 0x1b  ViewProj                                 slot 0x146cf7b20
++0x00c0  type 0x1b  InvView                                  slot 0x146cf7b40
++0x0100  type 0x1b  OldViewProj                              slot 0x146cf7b60
++0x0140  type 0x1b  DepthReconstructMatrix                   slot 0x146cf7b80
++0x0180  type 0x1b  HalfResDepthReconstructMatrix            slot 0x146cf7ba0
++0x01c0  type 0x1b  QuarterResDepthReconstructMatrix         slot 0x146cf7bc0
++0x0200  type 0x1a  ViewToObserverView                       slot 0x146cf7be0
++0x0230  type 0x08  Viewport                                 slot 0x146cf7c00
++0x0240  type 0x08  WPOSScaleOffset                          slot 0x146cf7c20
++0x0250  type 0x08  MVScaleBias                              slot 0x146cf7c40
++0x0260  type 0x08  PixelSize                                slot 0x146cf7c60
++0x0270  type 0x08  ViewPos                                  slot 0x146cf7c80
++0x0280  type 0x08  HPOSReconstructScaleOffset               slot 0x146cf7ca0
++0x0290  type 0x13  FloatingOrigin                           slot 0x146cf7cc0
++0x029c  type 0x05  DepthDirection                           slot 0x146cf7ce0
++0x02a0  type 0x08  ForceFieldProbeOffset0                   slot 0x146cf7d00
++0x02b0  type 0x08  ForceFieldProbeOffset1                   slot 0x146cf7d20
++0x02c0  type 0x08  ForceFieldProbeOffset2                   slot 0x146cf7d40
++0x02d0  type 0x08  ForceFieldProbeCenter0                   slot 0x146cf7d60
++0x02e0  type 0x08  ForceFieldProbeCenter1                   slot 0x146cf7d80
++0x02f0  type 0x08  ForceFieldProbeCenter2                   slot 0x146cf7da0
++0x0300  type 0x08  ForceFieldProbeOneOverSize0              slot 0x146cf7dc0
++0x0310  type 0x08  ForceFieldProbeOneOverSize1              slot 0x146cf7de0
++0x0320  type 0x08  ForceFieldProbeOneOverSize2              slot 0x146cf7e00
++0x0330  type 0x05  LodDistanceMul                           slot 0x146cf7e20
++0x0334  type 0x05  VolumeLightDepthRange                    slot 0x146cf7e40
++0x0338  type 0x15  PackedLightIndices                       slot 0x146cf7e60
++0x033c  type 0x15  UseKJPVolumetricFog                      slot 0x146cf7e80
