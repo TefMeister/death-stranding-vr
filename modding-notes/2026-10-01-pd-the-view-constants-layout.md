@@ -40,3 +40,19 @@ matrices +0x140/+0x180/+0x1C0 · **`ViewToObserverView` +0x200 (3×4)** · `View
 - Which register slot the structure binds to, matrix row/column order, handedness.
 - Which CPU function fills it each frame (the natural hook point): the next static step.
 - What reads `ViewToObserverView`.
+
+## Later the same session: looking for the per-frame filler (not found, and why)
+
+Searched the whole `.text` for code that **stores** to several `ViewConstants` offsets (`+0x230`, `+0x240`, `+0x270`,
+`+0x290`, `+0x29C`) through one non-stack pointer within a short span. Four candidates came out
+(`0x142b7485a`, `0x142be09f6`, `0x142c22557`, `0x143471dda`); all four are **initialisers** — three zero a large
+object field by field from a zero register, one copies stored values one field at a time (a loader) — not a
+per-frame fill `[inferred-static 2026-10-01]`. A rip-relative scan for the member descriptors gave only chance
+byte matches. Most likely the fill goes through Decima's descriptor system at run time (values set by registered
+offset, or a whole struct copied), which a fixed-offset search cannot see `[hypothesis]`.
+
+**Cheaper routes, for the next step:**
+- the game ships `d3dcompiler_47.dll` and `dxcompiler.dll` **beside the exe**, and imports `D3DReflect`; a logging
+  stand-in for the compiler library could report, live, which register slot `ViewConstants` binds to
+  `[hypothesis]` (⚠️ if the shaders are DXIL, the reflection goes through `dxcompiler.dll`, not `D3DReflect`);
+- or, after the first launch, read the camera block live from our `dxgi.dll`/`d3d12.dll` proxy.
