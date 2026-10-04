@@ -14,3 +14,10 @@ are not, or you are a rights holder who wants something corrected or removed, em
 - **Otis_Inf (Frans Bouma)**, photomode camera — https://opm.fransbouma.com/Cameras/deathstranding.htm
 - **DSDC Camera Tuner** authors — https://www.nexusmods.com/deathstranding/mods/111
 - **Decima Workshop** authors (Decima engine editor)
+
+## Sources (2026-10-04)
+
+- **mihailinl**, minecraft-in-death-stranding (MIT) — https://github.com/mihailinl/minecraft-in-death-stranding
+- **suidvandiewereld**, Bridger — https://github.com/suidvandiewereld/BRIDGER
+- **cauldronloader**, Cauldron (GPL-3.0) and eleuthia — https://github.com/cauldronloader/cauldron · https://github.com/cauldronloader/eleuthia
+- **ShadelessFox**, decima-workshop — https://github.com/ShadelessFox/decima-workshop
