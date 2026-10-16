@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-10-04 (estate sweep) — CHECK-IN.** Inbox empty. A Minecraft passthrough mod (MIT) maps the camera on our exact exe and names a built-in first-person switch; Bridger and Cauldron read Decima types by name. One topic, pointer sent to the dossier.
+**Last `/gr` pass: 2026-10-16 (estate sweep) — CHECK-IN.** Inbox empty. First live session happened today. One search for a film-grain / chromatic-aberration switch found none for the Director's Cut (a ReShade preset, and a Death Stranding 2 fix that only covers depth of field); a negative from one search.
+
+_Previous: **Last `/gr` pass: 2026-10-04 (estate sweep) — CHECK-IN.** Inbox empty. A Minecraft passthrough mod (MIT) maps the camera on our exact exe and names a built-in first-person switch; Bridger and Cauldron read Decima types by name. One topic, pointer sent to the dossier._
 
 _Previous: **Last `/gr` pass: 2026-09-29 (estate sweep) — CHECK-IN.** Inbox empty. Watch check: PCVR Central still lists R.E.A.L. VR support for Death Stranding Director's Cut (it labels it paid, while the board says the suite went free in March 2026; the catalogue text may be stale); no change._
 
