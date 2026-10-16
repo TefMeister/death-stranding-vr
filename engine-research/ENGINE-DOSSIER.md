@@ -58,6 +58,16 @@
   ⚠️ For a per-eye edit, `View`, `ViewProj`, `InvView`, the depth-reconstruct matrices and `ViewPos` must move
   together; `ViewToObserverView` (a transform from the rendered view to a separate "observer" view) is a candidate
   head-pose slot, like Prototype's View+0x2c `[hypothesis]`.
+- **A public mod maps the camera on our exact build** (from `/gr` 2026-10-04; topic
+  `external-research/topics/2026-10-04-minecraft-in-ds-maps-the-camera-on-our-exact-build.md`). mihailinl's
+  *minecraft-in-death-stranding* (MIT) targets `ds.exe` linked 2024-01-28, the same link date as §1 `[reported]`.
+  Camera path: `GetLocalDSPlayerEntity` (rva `0x2757a30`) → player `+0xd0` (camera controller) → `+0x20` →
+  `Camera : WorldNode`; `WorldTransform` at `+0x20`; near/far/FOV/aspect at `+0x6C/+0x70/+0x74/+0x78`; `RotMatrix`
+  columns right/forward/up, Z up, `WorldPosition` three doubles, reversed-Z depth, FOV 45.75° vertical `[reported]`.
+  **Built-in first-person switch:** `DSCameraInterface::SetEnableForceSubjectiveCameraMode(bool, float)` at rva
+  `0x26e6130` (bit 7 of `[*(0x147be7998)+0x29c]`, blend time at `+0x208`) `[reported]`. FOV writes flicker unless made
+  at the game's own FOV writer (recomputed in ~95% of frames) `[reported]`. Our own read-only logger has to confirm all
+  of it before it is trusted. The Bridger framework found beside it targets the ORIGINAL release (appid 1190460), not ours.
 - Where projection `P` / FOV comes from:
 - The per-eye override maths (`K_eye = …`):
 
