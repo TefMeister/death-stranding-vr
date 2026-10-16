@@ -1,0 +1,6 @@
+[2026-10-16 19:34:12.166] === dsvr_d3dcompiler d3dcompiler_47.dll proxy attached, PID 21912, exe D:\Program Files (x86)\Steam\steamapps\common\DEATH STRANDING DIRECTORS CUT\ds.exe ===
+[2026-10-16 19:34:12.168] real dll: d3dcompiler_47_real.dll (loaded at 00007FFB746E0000), 29 of 29 exports resolved
+[2026-10-16 19:37:28.151] === dsvr_d3dcompiler d3dcompiler_47.dll proxy detached (process exit) ===
+[2026-10-16 19:37:47.031] === dsvr_d3dcompiler d3dcompiler_47.dll proxy attached, PID 9212, exe D:\Program Files (x86)\Steam\steamapps\common\DEATH STRANDING DIRECTORS CUT\ds.exe ===
+[2026-10-16 19:37:47.033] real dll: d3dcompiler_47_real.dll (loaded at 00007FFB746E0000), 29 of 29 exports resolved
+[2026-10-16 19:44:17.404] === dsvr_d3dcompiler d3dcompiler_47.dll proxy detached (process exit) ===

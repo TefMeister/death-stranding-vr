@@ -1,0 +1,12 @@
+[19:34:13.751] D3DReflect wrapper active (real: d3dcompiler_47_real.dll)
+[19:34:13.752] cbuffer Uniforms                         size   16 bytes,  1 members, register b0 (x1), shader version 0x0051
+[19:34:13.758] cbuffer InUniformParams                  size   16 bytes,  1 members, register b0 (x1), shader version 0x0051
+[19:34:13.761] cbuffer inRequestData                    size   20 bytes,  1 members, register b0 (x1), shader version 0x0051
+[19:34:14.715] cbuffer RasterizerVariables              size  256 bytes,  5 members, register b0 (x1), shader version 0x0051
+[19:34:14.720] cbuffer InUniformConstants               size   16 bytes,  3 members, register b0 (x1), shader version 0x0051
+[19:37:48.630] D3DReflect wrapper active (real: d3dcompiler_47_real.dll)
+[19:37:48.631] cbuffer Uniforms                         size   16 bytes,  1 members, register b0 (x1), shader version 0x0051
+[19:37:48.637] cbuffer InUniformParams                  size   16 bytes,  1 members, register b0 (x1), shader version 0x0051
+[19:37:48.639] cbuffer inRequestData                    size   20 bytes,  1 members, register b0 (x1), shader version 0x0051
+[19:37:49.603] cbuffer RasterizerVariables              size  256 bytes,  5 members, register b0 (x1), shader version 0x0051
+[19:37:49.610] cbuffer InUniformConstants               size   16 bytes,  3 members, register b0 (x1), shader version 0x0051

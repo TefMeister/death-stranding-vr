@@ -27,9 +27,9 @@
 
 ## 4. DRM / anti-debug & injection foothold
 - DRM (CEG/Denuvo/GOG/none); launch-time-debugger behaviour: No Denuvo string and no protection-shaped section found; Steam API present `[inferred-static 2026-09-13]`; `steam_api64.dll` is not a static import (loaded at run time); `.text` is plain code (entropy 6.36) `[measured 2026-10-01]`. Not tested live.
-- **Settings and saves:** `%LOCALAPPDATA%\KojimaProductions\DeathStrandingDC\<steam id>\profile` (binary) plus save slots; no ini found, so window mode and music are set in the in-game menu `[inferred-static 2026-10-01]`.
+- **Settings and saves:** gameplay settings in `%LOCALAPPDATA%\KojimaProductions\DeathStrandingDC\<steam id>\profile\game_settings.cfg` (plain text; audio has only `MasterVolumeSensitiviness`, no music-only volume), `profile.dat` is scrambled. **Display settings are a plain-text `settings.cfg` beside `ds.exe`** `[verified-live 2026-10-16, n=1]`: `window_mode 1`, `rendering_width/height`, `window_left/top/right/bottom`; set to 1280x720 at (320,180) with the game closed, the next start came up windowed 1280x720 with the desktop untouched. The in-menu Confirm wrote this file, but the first menu change did not survive a forced close. **VR screen-effect switches in the same file:** `postprocess_dof`, `postprocess_motionblur` (menu: Depth of Field, Motion Blur) `[verified-live 2026-10-16, read from the file]`; film grain (visible on the title screen) and any chromatic aberration have no menu switch yet. Flat play keeps them on.
 - Attach workflow that works: not yet tested.
-- Injection vector that works (proxy DLL name / injector / framework): not yet tested.
+- Injection vector that works: **a `d3dcompiler_47.dll` proxy beside `ds.exe` loads** (29/29 exports forwarded to the renamed original) `[verified-live 2026-10-16, n=2 launches]`. Its `D3DReflect` wrapper saw only ~10 small start-up compute shaders (`Uniforms`, `RasterizerVariables`, ...), none on the second start: the game ships compiled shaders, so **reflection logging cannot find the camera constants** `[measured 2026-10-16, n=2]`. Taken out again; kept in `dev-archive/archive/2026-10-16-d3dcompiler-reflect-logger/`.
 
 ## 5. Threading & frame structure
 - Immediate context only, or deferred contexts + command lists?:
@@ -90,7 +90,7 @@
 | | | |
 
 ## 10. Autonomous harness recipe (this game)
-- Launch to a known scene (commands used):
+- Launch to a known scene (commands used): `steam://rungameid/1850570` (about 60 s to the menu on the dev PC; the very first start prepares shaders for longer). Menu: keyboard only (hardware-scancode presses; mouse clicks ignored); Continue loads the last save (about 2.5 min on the dev PC), into Episode 1 carrying the president's body. W walks, mouse movement turns the camera. Closing: a plain `taskkill` (window close) exits cleanly. Detail: `ai-game-control-profiles/routes/death-stranding/KNOWN.md`. `[verified-live 2026-10-16, n=1]`
 - In-process input / camera drive method that worked:
 - Frame-capture method; where images land:
 
