@@ -61,3 +61,14 @@ switch once and look. Everything above is theirs and `[reported]` until we measu
 mihailinl (minecraft-in-death-stranding, MIT); ShadelessFox (decima-workshop, whose type dump they matched);
 suidvandiewereld (Bridger); the Cauldron authors (cauldron, eleuthia); Otis_Inf (closed-source DS camera tools, cited
 by mihailinl as proof the camera is writable).
+
+## Follow-up 2026-10-26 (`/gr`, check-in)
+
+The repo had two more commits on 2026-10-05 (last push 2026-10-15), read through the GitHub API `[reported 2026-10-26]`:
+
+- **The game draws its whole UI into one full-screen RGBA16F target and blends it with the scene in a single pass.**
+  Their add-on finds that target every frame and lays it over their own picture. For us this is where the HUD can be
+  kept off the eyes or moved to a panel later, once the camera logger works.
+- Their compositor now reads the game's near and far clip planes every frame, not only while their link is up; the
+  clip planes are reachable the same way as the camera.
+- Nothing in these commits changes the camera path or offsets above. The camera-logger `[PD]` row stands as written.
