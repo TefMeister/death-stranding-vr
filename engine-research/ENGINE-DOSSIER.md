@@ -65,7 +65,11 @@
   `Camera : WorldNode`; `WorldTransform` at `+0x20`; near/far/FOV/aspect at `+0x6C/+0x70/+0x74/+0x78`; `RotMatrix`
   columns right/forward/up, Z up, `WorldPosition` three doubles, reversed-Z depth, FOV 45.75° vertical `[reported]`.
   **Built-in first-person switch:** `DSCameraInterface::SetEnableForceSubjectiveCameraMode(bool, float)` at rva
-  `0x26e6130` (bit 7 of `[*(0x147be7998)+0x29c]`, blend time at `+0x208`) `[reported]`. FOV writes flicker unless made
+  `0x26e6130` (bit 7 of `[*(0x147be7998)+0x29c]`, blend time at `+0x208`) `[reported]`.
+  **First link corroborated from the code** `[inferred-static 2026-10-28]`: the getter loads the manager from
+  `ds.exe+0x7bc7568`, looks up with the descriptor at `ds.exe+0x4b1acb8` (on disk index 0, fast path `[mgr+0x48]`),
+  returns `[+0x70]`. A read-only logger of it is built (`staging/death-stranding-vr/proxy-d3dcompiler/src/camera_log.c`,
+  note `modding-notes/2026-10-28-pd-a-read-only-camera-logger.md`), not yet run. FOV writes flicker unless made
   at the game's own FOV writer (recomputed in ~95% of frames) `[reported]`. Our own read-only logger has to confirm all
   of it before it is trusted. The Bridger framework found beside it targets the ORIGINAL release (appid 1190460), not ours.
 - Where projection `P` / FOV comes from:
