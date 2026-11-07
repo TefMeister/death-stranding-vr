@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-10-26 — CHECK-IN.** Inbox empty; board unchanged since 10-16. The Minecraft passthrough mod had two more commits (2026-10-05): the game draws its whole UI into one full-screen target in a single pass, and the clip planes are read each frame; added to its 2026-10-04 topic. Camera path unchanged.
+**Last `/gr` pass: 2026-11-07 (estate sweep) — CHECK-IN.** Inbox empty; watch check only: no Director's Cut VR mod beyond the old vorpX work-in-progress and fan demos; the Minecraft passthrough mod has no commits since 2026-10-05. Nothing new.
+
+_Previous: **Last `/gr` pass: 2026-10-26 — CHECK-IN.** Inbox empty; board unchanged since 10-16. The Minecraft passthrough mod had two more commits (2026-10-05): the game draws its whole UI into one full-screen target in a single pass, and the clip planes are read each frame; added to its 2026-10-04 topic. Camera path unchanged._
 
 _Previous: **Last `/gr` pass: 2026-10-16 (estate sweep) — CHECK-IN.** Inbox empty. First live session happened today. One search for a film-grain / chromatic-aberration switch found none for the Director's Cut (a ReShade preset, and a Death Stranding 2 fix that only covers depth of field); a negative from one search._
 
