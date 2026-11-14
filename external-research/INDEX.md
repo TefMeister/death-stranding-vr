@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-11-07 (estate sweep) — CHECK-IN.** Inbox empty; watch check only: no Director's Cut VR mod beyond the old vorpX work-in-progress and fan demos; the Minecraft passthrough mod has no commits since 2026-10-05. Nothing new.
+**Last `/gr` pass: 2026-11-14 (check-ins beside the Keeper's sweep of the same day) — CHECK-IN.** Inbox empty; watch check only: no Death Stranding VR mod with tracked hands found. Nothing new.
+
+_Previous: **Last `/gr` pass: 2026-11-07 (estate sweep) — CHECK-IN.** Inbox empty; watch check only: no Director's Cut VR mod beyond the old vorpX work-in-progress and fan demos; the Minecraft passthrough mod has no commits since 2026-10-05. Nothing new._
 
 _Previous: **Last `/gr` pass: 2026-10-26 — CHECK-IN.** Inbox empty; board unchanged since 10-16. The Minecraft passthrough mod had two more commits (2026-10-05): the game draws its whole UI into one full-screen target in a single pass, and the clip planes are read each frame; added to its 2026-10-04 topic. Camera path unchanged._
 
